@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/music/music",
+    "pages/video/video",
+    "pages/video_info/video_info",
+    "pages/search_info/index",
+    "pages/gedanInfo/index",
+    "pages/bandanginfo/index",
+    "pages/play_music/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "音乐",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/music/music",
+        "iconPath": "./images/tabbar/music_normal.png",
+        "selectedIconPath": "./images/tabbar/music_active.png",
+        "text": "音乐"
+      },
+      {
+        "pagePath": "pages/video/video",
+        "iconPath": "./images/tabbar/video_normal.png",
+        "selectedIconPath": "./images/tabbar/video_active.png",
+        "text": "视频"
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+<view>
+  <van-search placeholder='请输入歌曲名或者歌手名字'
+              disabled
+              bind:click-input="onclickInput"
+  />
+</view>
+
+<!-- 轮播图 -->
+<view>
+  <swiper class="swiper"
+          indicator-dots
+          circular
+          style="height: {{swiperheight}}px;"
+          >
+    <swiper-item wx:for="{{banner}}" wx:key="this" class="swiper-item">
+      <image src="{{item.pic}}" mode="widthFix" bindload="imageloaed" id='swiperimage'></image>
+    </swiper-item>
+  </swiper>
+</view>
+
+<header-title title="推荐歌曲"></header-title>
+<view wx:for="{{tuijinaMusic}}" wx:key="this" class="tuijian" bindtap="music_play" data-item="{{item}}">
+  <view class="tjleft"><image src="{{item.song.album.blurPicUrl}}" mode="widthFix"></image></view>
+  <view class="tjright">
+    <view class="tjrtext">{{item.song.name}}</view>
+    <view class="tjrname">{{item.song.artists[0].name}}</view>
+  </view>
+</view>
+<view class="gedanview">
+  <header-title title="推荐歌单"></header-title>
+  <view>
+  <scroll-view scroll-x>
+  <view class="gedan">
+    <view wx:for="{{gedanlist}}" wx:key="this" bindtap="navToinfo" data-item="{{item}}">
+      <view><image src="{{item.coverImgUrl}}" mode="widthFix"></image></view>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+  </scroll-view>
+</view>
+
+</view>
+
+<header-title title='推荐榜单'></header-title>
+<view>
+  <scroll-view scroll-x >
+  <view class="gedan">
+    <view wx:for="{{leixingbang.list}}" wx:key="this" bindtap="bandang" data-item="{{item}}">
+      <view><image src="{{item.coverImgUrl}}" mode="widthFix"></image></view>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+  </scroll-view>
+</view>

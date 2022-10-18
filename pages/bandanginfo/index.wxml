@@ -1,0 +1,12 @@
+<!--pages/bandanginfo/index.wxml-->
+<header-title title='{{bandanginfo.name}}'></header-title>
+<view wx:for="{{bandanginfo.tracks}}" wx:key="id" class="item">
+    <view class="index">{{index+1}}</view>
+    <view class="name">
+      <text class="name-name">{{item.name}}</text>
+      <view class="item-info">
+        <image src="../../images/icons/sq_icon.png" mode="widthFix"></image>
+        <text>{{item.ar[0].name}}</text>
+      </view>
+    </view>
+  </view>

@@ -1,0 +1,39 @@
+/* pages/video/video.wxss */
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.flexbox > view {
+  width: 48%;
+}
+.flexbox image {
+  width: 100%;
+  border-radius: 10rpx;
+}
+.dingwei {
+  position: relative;
+}
+.dingwei > view {
+  font-size: 24rpx;
+  color: #ffffff;
+  position: absolute;
+  bottom: 15rpx;
+}
+.dingwei > view > image {
+  margin: 0rpx 10rpx;
+  width: 38rpx;
+  height: 26rpx;
+}
+.dingwei > view > text:nth-child(2) {
+  position: absolute;
+  bottom: 0px;
+  right: -180rpx;
+}
+.boxfont {
+  font-size: 26rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

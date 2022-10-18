@@ -1,0 +1,29 @@
+/**
+ * 
+ * @param { number } count 
+ */
+
+function formatchCount(count) {
+  count = parseInt(count)
+  if(count > 100000000) {
+    return (count / 100000000).toFixed(1) + '亿'
+  }else if(count > 10000) {
+    return (count / 10000).toFixed(1) + '万'
+  }else {
+    return count + ''
+  }
+}
+
+function formatchTime(druation) {
+  druation = druation / 1000
+  var min = Math.floor(druation / 60)
+  var sec = Math.floor(druation % 60)
+  min = min < 10 ? '0' + min : min
+  sec = sec < 10 ? '0' + sec : sec
+  return min + ':' + sec
+}
+
+module.exports = {
+  formatchCount:formatchCount,
+  formatchTime:formatchTime
+}

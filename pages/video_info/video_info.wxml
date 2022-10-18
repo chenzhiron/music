@@ -1,0 +1,10 @@
+<wxs src='../../utils/jisuan.wxs' module="formatch"/>
+<view>
+  <video src="{{mvdata.url}}" class="video"></video>
+</view>
+<view class="index">
+  <view class="name">{{mvdetail.name}}</view>
+  <view>{{mvdetail.artistName || '歌手'}}--</view>
+  <view>{{formatch.formatchCount(mvdetail.playCount)}}次播放--{{mvdetail.publishTime}}</view>
+</view>
+

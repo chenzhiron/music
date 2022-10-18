@@ -1,0 +1,103 @@
+view {
+  box-sizing: border-box;
+}
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+.bg image {
+  width: 100%;
+  height: 100%;
+  filter: blur(120px);
+}
+
+/* pages/play_music/index.wxss */
+
+.tit {
+  display: flex;
+}
+.left {
+  width: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.left image{
+  width: 60%;
+  display: block;
+}
+.center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.center view {
+  margin: 0 20rpx;
+  color: rgba(0,0,0, .4);
+}
+.right {
+  width: 80rpx;
+}
+.darkcolor {
+  color: rgb(228, 214, 214) !important;
+}
+.gequ {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20rpx;
+}
+.gq_image {
+  flex: 4;
+  margin: 0 auto;
+  width: 100%;
+}
+.gq_image image {
+  width: 100%;
+}
+.gq_title{
+  flex: 1;
+}
+.gq_title view:nth-child(1) {
+  font-size: 36rpx;
+}
+
+.song {
+  flex: 1;
+}
+.gq_process {
+  flex: 1;
+}
+
+.anniu {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.anniu image {
+  width: 80%;
+  height: 58rpx;
+}
+.a_left {
+  flex: 1;
+}
+.a_center {
+  text-align: center;
+  flex: 3;
+}
+.a_center image{
+  width: 20%;
+  height: 90rpx;
+}
+.a_right {
+  flex: 1;
+}
+.slidertext {
+  display: flex;
+  justify-content: space-between;
+}

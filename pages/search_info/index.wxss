@@ -1,0 +1,35 @@
+/* pages/search_info/index.wxss */
+page {
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.search-item {
+  margin: 0 30rpx;
+  padding: 5rpx 10rpx;
+  background-color: #fafafa;
+  border-radius: 10rpx;
+  font-size: 26rpx;
+}
+.index {
+  margin: auto 0;
+}
+.item {
+  display: flex;
+}
+.name {
+  margin-top: 20rpx;
+  line-height: 40rpx;
+  margin-left: 20rpx;
+}
+.item-info {
+  margin-top: 10rpx;
+}
+.item-info image {
+  width: 40rpx;
+  vertical-align: middle;
+}
+.item-info text {
+  margin-left: 20rpx;
+  font-size: 26rpx;
+}

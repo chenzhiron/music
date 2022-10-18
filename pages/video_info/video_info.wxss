@@ -1,0 +1,21 @@
+/* pages/video_info/video_info.wxss */
+.index {
+  padding: 10px;
+}
+
+
+
+.video {
+  width: 100%;
+}
+.index view {
+  line-height:40rpx;
+  color: #999999;
+  font-size: 28rpx;
+}
+.index .name {
+  margin-bottom: 8rpx;
+  color: #000000;
+  font-weight: 700;
+  font-size: 40rpx;
+}

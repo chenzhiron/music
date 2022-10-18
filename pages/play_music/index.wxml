@@ -1,0 +1,60 @@
+<wxs src="../../utils/jisuan.wxs" module="formatch"></wxs>
+<view class="bg">
+  <image src="{{music.al.picUrl}}" mode="aspectFill"></image>
+</view>
+<view  style="height:{{titleHeight}}px;"></view>
+<!-- 顶部 -->
+<view class="tit" style="height: {{DAOHANGTITLE}}px;">
+  <view class="left" bindtap="back">
+    <image mode="widthFix" src="/images/icons/arrow-left.png"></image>
+  </view>
+  <view class="center">
+    <view class="{{current == 0 ? 'darkcolor':''}}" bindtap="changeCurrent" data-index='0'>歌曲</view>|
+    <view class="{{current == 1 ? 'darkcolor':''}}" bindtap="changeCurrent" data-index='1'>歌词</view>
+  </view>
+  <view class="right"></view>
+</view>
+
+<!-- 信息 -->
+<view>
+  <swiper style="height: {{swiperHeight}}px;" bindchange='changeSwiper' current="{{current}}">
+    <swiper-item >
+      <view class="gequ">
+        <!-- 图片 -->
+      <view class="gq_image">
+        <image src="{{music.al.picUrl}}" mode="widthFix"></image>
+      </view>
+      <!-- 标题 & 歌曲信息 -->
+      <view class="gq_title">
+        <view>{{music.name}}</view>
+        <view>{{music.ar[0].name}}</view>
+      </view>
+      <!-- 歌词 -->
+      <view class="song">1234</view>
+      <!-- 进度条 -->
+      <view class="gq_process">
+       <slider></slider>
+       <view class="slidertext">
+        <text>1234</text>
+        <text>{{formatch.formatchTime(music.dt)}}</text>
+       </view>
+      </view>
+      <!-- 切换按钮 -->
+      <view class="anniu">
+        <view class="a_left">
+          <image src="/images/player/play_order.png" mode="widthFix"></image>
+        </view>
+        <view class="a_center">
+          <image src="/images/player/play_prev.png" ></image>
+          <image src="/images/player/play_resume.png" ></image>
+          <image src="/images/player/play_next.png" ></image>
+        </view>
+        <view class="a_right">
+          <image src="/images/player/play_music.png" mode="widthFix"></image>
+        </view>
+      </view>
+      </view>
+    </swiper-item>
+    <swiper-item >456</swiper-item>
+  </swiper>
+</view>

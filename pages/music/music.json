@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "van-search": "@vant/weapp/search/index",
+    "header-title":"/module/header_title/index"
+  }
+}

@@ -1,0 +1,26 @@
+/* module/header-title/index.wxss */
+.view {
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title {
+  font-size: 33rpx;
+  font-weight: 600;
+}
+.right {
+  display: none;
+  color: #999999;
+  font-size: 24rpx;
+}
+/* 使用css 插槽根据是否传过来标签，判断是否展示默认 */
+.title .slotitem:empty + .right {
+  display:flex;
+}
+
+image {
+  vertical-align: bottom;
+  width: 30rpx;
+  height: 30rpx;
+}

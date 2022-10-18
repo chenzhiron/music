@@ -1,0 +1,26 @@
+/* pages/gedanInfo/index.wxss */
+page {
+  padding: 0 20rpx;
+  background-color: 249, 249, 248;
+}
+.index {
+  margin: auto 0;
+}
+.item {
+  display: flex;
+}
+.name {
+  margin-top: 20rpx;
+  line-height: 40rpx;
+  margin-left: 20rpx;
+}
+.item-info {
+  margin-top: 10rpx;
+}
+.item-info image {
+  width: 40rpx;
+  vertical-align: middle;
+}
+.item-info text {
+  margin-left: 20rpx;
+}

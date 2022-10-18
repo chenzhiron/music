@@ -1,0 +1,58 @@
+/* pages/music/music.wxss */
+page {
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+.van-search{
+  padding: 10px 0 !important;
+}
+.swiper {
+  width: 100%;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+.swiper-item {
+  display: flex;
+}
+.swiper-item image {
+  width: 100% ; 
+}
+.tuijian {
+  margin: 20rpx 0;
+  display: flex;
+}
+.tjleft image{
+  border-radius: 10rpx;
+  width: 100rpx;
+}
+.tjright {
+  margin-left: 20rpx;
+}
+.tjrname {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+}
+.gedanview {
+  margin: 20rpx 0;
+}
+.gedan {
+  display: flex;
+  padding-top: 20px;
+}
+.gedan image {
+  width: 200rpx;
+  border-radius: 10rpx;
+}
+.gedan > view {
+  margin-right: 20rpx;
+  width: 200px;
+}
+.gedan > view > text {
+  width: 90%;
+  font-size: 26rpx;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

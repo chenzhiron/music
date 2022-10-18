@@ -1,0 +1,11 @@
+<!--module/header-title/index.wxml-->
+<view class="view">
+  <view class="title">
+    {{title}}
+  </view>
+    <view class="slotitem"><slot></slot></view>
+    <view class="right">
+        <text>{{text}}</text>
+        <image src="/images/icons/arrow-right.png"></image>
+    </view>
+</view>

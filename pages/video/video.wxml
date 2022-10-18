@@ -1,0 +1,20 @@
+<wxs src='../../utils/jisuan.wxs' module="formatch"/>
+<view>
+  <view class='flexbox'>
+    <view wx:for="{{listMv}}" wx:key="id" bindtap="clickVideo" data-item="{{item}}" >
+    <!-- 抽成组件 -->
+    <view  >
+      <view class="dingwei">
+       <image src="{{item.cover}}" mode="widthFix"></image>
+        <!-- 下列为定位 -->
+        <view>
+          <image src='../../images/icons/play_icon.png'></image>
+          <text>{{formatch.formatchTime(item.mv.videos[0].duration)}}</text>
+          <text>{{formatch.formatchCount(item.playCount)}}</text>
+        </view>
+      </view>
+      <view class="boxfont">{{item.name}} — {{item.artistName}}</view>
+    </view>
+   </view>
+  </view>
+</view>

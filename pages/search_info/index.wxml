@@ -1,0 +1,23 @@
+<!--pages/search_info/index.wxml-->
+<van-search bind:change="searchGet"></van-search>
+
+<view class="search" wx:if="{{songs.length <= 0}}">
+  <header-title title='热门搜索'></header-title>
+  <block wx:for="{{searchHot}}" wx:key="this">
+    <text class="search-item">{{item.first}}</text>
+  </block>
+</view>
+
+<view wx:if="{{songs.length > 0}}">
+    <header-title title='搜索推荐'></header-title>
+    <view wx:for="{{songs}}" wx:key="id" class="item">
+    <view class="index">{{index+1}}</view>
+    <view class="name">
+      <view>{{item.name}}</view>
+      <view class="item-info">
+        <image src="../../images/icons/sq_icon.png" mode="widthFix"></image>
+        <text>{{item.ar[0].name}}</text>
+      </view>
+    </view>
+  </view>
+</view>
