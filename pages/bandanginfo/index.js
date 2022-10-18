@@ -21,7 +21,12 @@ Page({
       })
     })
   },
-
+  musicchange(res){
+    const id = res.currentTarget.dataset.item.al.id
+    wx.navigateTo({
+      url: '/pages/play_music/index?id='+id,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

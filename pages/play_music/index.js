@@ -1,11 +1,14 @@
-import { getMusicUrl, getMusicInfo } from '../../network/play_music'
+import { getMusicUrl, getMusicInfo, getMusicGeci } from '../../network/play_music'
 import { DAOHANGTITLE } from '../../const/index'
+import { musicContent } from '../../const/music'
+import { gecireg } from '../../utils/gecireg'
 // pages/play_music/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
+
   data: {
     titleHeight:0,
     swiperHeight:0,
@@ -13,7 +16,12 @@ Page({
     current:0,
     music:{},
     music_info:{},
-    dt:0
+    dt:0,
+    currentTime:0,
+    currentslider:0,
+    isslider:true,
+    geci:[],
+    currentgeci:''
   },
   back() {
     wx.navigateBack({
@@ -45,15 +53,62 @@ Page({
     this.setData({
       swiperHeight: hei
     })
+    getMusicGeci(options.id).then(res => {
+      let str = gecireg(res.data.lrc.lyric)
+      this.setData({
+        geci: str
+      })
+    })
     getMusicInfo(options.id).then(res => {
       this.setData({
-        music:res.data.songs[0]
+        music:res.data.songs[0],
+        dt: res.data.songs[0].dt / 1000
       })
     })
     getMusicUrl(options.id).then(res => {
       this.setData({
         music_info:res.data.data[0]
       })
+      musicContent.stop()
+      musicContent.src = res.data.data[0].url
+    })
+    musicContent.onCanplay(()=> {
+      musicContent.play()
+    })
+    musicContent.onTimeUpdate(() => {
+      if(this.data.isslider) {
+        let time = musicContent.currentTime
+        let current = musicContent.currentTime / this.data.dt * 100
+       
+       let i = 0
+       for(;i<this.data.geci.length;i++) {
+         if(this.data.geci[i].time > time){
+           break;
+         }
+       }
+       this.setData({
+        currentgeci: i == 0 ? this.data.geci[0].text:this.data.geci[i-1].text,
+        currentTime: time,
+        currentslider: current
+      })
+
+      }
+    })
+  },
+  sliderchangering() {
+    if(this.data.isslider) {
+      this.setData({
+        isslider: false
+      })
+    }
+  },
+  sliderchanger(res) {
+    const index = res.detail.value
+    const num = this.data.dt * index / 100
+    musicContent.pause()
+    musicContent.seek(num)
+    this.setData({
+      isslider:true
     })
   },
 
@@ -104,5 +159,8 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  musicpause() {
+    musicContent.pause()
   }
 })

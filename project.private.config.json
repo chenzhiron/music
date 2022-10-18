@@ -9,37 +9,9 @@
     "miniprogram": {
       "list": [
         {
-          "name": "",
-          "pathName": "pages/music/music",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "gedaninfo",
-          "pathName": "pages/gedanInfo/index",
-          "query": "id=3001035934",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
           "name": "bandanginfo",
           "pathName": "pages/bandanginfo/index",
           "query": "id=19723756",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "搜索",
-          "pathName": "pages/search_info/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "音乐",
-          "pathName": "pages/audio/index",
-          "query": "id=1984488457",
           "launchMode": "default",
           "scene": null
         }

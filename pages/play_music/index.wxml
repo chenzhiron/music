@@ -30,12 +30,16 @@
         <view>{{music.ar[0].name}}</view>
       </view>
       <!-- 歌词 -->
-      <view class="song">1234</view>
+      <view class="song">{{currentgeci}}</view>
       <!-- 进度条 -->
       <view class="gq_process">
-       <slider></slider>
+       <slider value="{{currentslider}}"
+              block-size="14"
+              bindchange="sliderchanger"
+              bindchanging="sliderchangering"
+       ></slider>
        <view class="slidertext">
-        <text>1234</text>
+        <text>{{formatch.formatchTime(currentTime)}}</text>
         <text>{{formatch.formatchTime(music.dt)}}</text>
        </view>
       </view>
@@ -46,7 +50,7 @@
         </view>
         <view class="a_center">
           <image src="/images/player/play_prev.png" ></image>
-          <image src="/images/player/play_resume.png" ></image>
+          <image src="/images/player/play_resume.png" bindtap="musicpause" ></image>
           <image src="/images/player/play_next.png" ></image>
         </view>
         <view class="a_right">

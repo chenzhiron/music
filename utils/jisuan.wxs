@@ -15,7 +15,7 @@ function formatchCount(count) {
 }
 
 function formatchTime(druation) {
-  druation = druation / 1000
+  if(druation > 1000)  druation = druation / 1000
   var min = Math.floor(druation / 60)
   var sec = Math.floor(druation % 60)
   min = min < 10 ? '0' + min : min

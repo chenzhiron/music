@@ -11,7 +11,15 @@ function getMusicInfo(ids) {
   })
 }
 
+function getMusicGeci(id) {
+  return Music.GETdata('/lyric',{
+    id
+  })
+}
+
 module.exports = {
   getMusicUrl,
-  getMusicInfo
+  getMusicInfo,
+  getMusicGeci
+  
 }

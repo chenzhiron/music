@@ -64,11 +64,17 @@ view {
   flex: 1;
 }
 .gq_title view:nth-child(1) {
-  font-size: 36rpx;
+  font-size: 42rpx;
 }
+.gq_title view:last-child {
+  font-size: 30rpx;
+}
+
 
 .song {
   flex: 1;
+  text-align: center;
+  color: aquamarine;
 }
 .gq_process {
   flex: 1;

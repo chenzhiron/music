@@ -33,7 +33,6 @@ Page({
    */
   onLoad(options) {
     const app = getApp()
-    console.log(app);
     wx.getSystemInfo({
       success: (result) => {
        app.globalData.screenWidth = result.screenWidth

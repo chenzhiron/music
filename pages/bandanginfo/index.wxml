@@ -1,6 +1,6 @@
 <!--pages/bandanginfo/index.wxml-->
 <header-title title='{{bandanginfo.name}}'></header-title>
-<view wx:for="{{bandanginfo.tracks}}" wx:key="id" class="item">
+<view wx:for="{{bandanginfo.tracks}}" wx:key="id" class="item" bindtap="musicchange" data-item="{{item}}">
     <view class="index">{{index+1}}</view>
     <view class="name">
       <text class="name-name">{{item.name}}</text>
