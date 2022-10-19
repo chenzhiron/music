@@ -2,7 +2,7 @@
 <view class="bg">
   <image src="{{music.al.picUrl}}" mode="aspectFill"></image>
 </view>
-<view  style="height:{{titleHeight}}px;"></view>
+<view style="height:{{titleHeight}}px;"></view>
 <!-- 顶部 -->
 <view class="tit" style="height: {{DAOHANGTITLE}}px;">
   <view class="left" bindtap="back">
@@ -18,47 +18,43 @@
 <!-- 信息 -->
 <view>
   <swiper style="height: {{swiperHeight}}px;" bindchange='changeSwiper' current="{{current}}">
-    <swiper-item >
+    <swiper-item>
       <view class="gequ">
         <!-- 图片 -->
-      <view class="gq_image">
-        <image src="{{music.al.picUrl}}" mode="widthFix"></image>
-      </view>
-      <!-- 标题 & 歌曲信息 -->
-      <view class="gq_title">
-        <view>{{music.name}}</view>
-        <view>{{music.ar[0].name}}</view>
-      </view>
-      <!-- 歌词 -->
-      <view class="song">{{currentgeci}}</view>
-      <!-- 进度条 -->
-      <view class="gq_process">
-       <slider value="{{currentslider}}"
-              block-size="14"
-              bindchange="sliderchanger"
-              bindchanging="sliderchangering"
-       ></slider>
-       <view class="slidertext">
-        <text>{{formatch.formatchTime(currentTime)}}</text>
-        <text>{{formatch.formatchTime(music.dt)}}</text>
-       </view>
-      </view>
-      <!-- 切换按钮 -->
-      <view class="anniu">
-        <view class="a_left">
-          <image src="/images/player/play_order.png" mode="widthFix"></image>
+        <view class="gq_image">
+          <image src="{{music.al.picUrl}}" mode="widthFix"></image>
         </view>
-        <view class="a_center">
-          <image src="/images/player/play_prev.png" ></image>
-          <image src="/images/player/play_resume.png" bindtap="musicpause" ></image>
-          <image src="/images/player/play_next.png" ></image>
+        <!-- 标题 & 歌曲信息 -->
+        <view class="gq_title">
+          <view>{{music.name}}</view>
+          <view>{{music.ar[0].name}}</view>
         </view>
-        <view class="a_right">
-          <image src="/images/player/play_music.png" mode="widthFix"></image>
+        <!-- 歌词 -->
+        <view class="song">{{currentgeci}}</view>
+        <!-- 进度条 -->
+        <view class="gq_process">
+          <slider value="{{currentslider}}" block-size="14" bindchange="sliderchanger" bindchanging="sliderchangering"></slider>
+          <view class="slidertext">
+            <text>{{formatch.formatchTime(currentTime)}}</text>
+            <text>{{formatch.formatchTime(music.dt)}}</text>
+          </view>
         </view>
-      </view>
+        <!-- 切换按钮 -->
+        <view class="anniu">
+            <image src="/images/player/play_order.png" mode="heightFix"></image>
+            <image src="/images/player/play_prev.png" mode="heightFix"></image>
+            <image src="/images/player/play_resume.png" bindtap="musicpause"></image>
+            <image src="/images/player/play_next.png" mode="heightFix"></image>
+            <image src="/images/player/play_music.png" mode="heightFix"></image>
+          </view>
       </view>
     </swiper-item>
-    <swiper-item >456</swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y class="scrolly" scroll-top="{{currentTop}}">
+        <view wx:for="{{geci}}" wx:key="index" class="txt {{index == currentIndex - 1 ? 'active':''}}" style="padding-top: {{index == 0 ? swiperHeight/2 : 0}}px;padding-bottom: {{ index == geci.length - 1 ? swiperHeight/2 : 0 }}px;">
+          {{item.text}}
+        </view>
+      </scroll-view>
+    </swiper-item>
   </swiper>
 </view>

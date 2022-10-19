@@ -22,7 +22,7 @@ Page({
     })
   },
   musicchange(res){
-    const id = res.currentTarget.dataset.item.al.id
+    const id = res.currentTarget.dataset.item.id
     wx.navigateTo({
       url: '/pages/play_music/index?id='+id,
     })

@@ -21,7 +21,10 @@ Page({
     currentslider:0,
     isslider:true,
     geci:[],
-    currentgeci:''
+    currentgeci:'',
+    currentIndex:0,
+    currentTop:0,
+    isplay:true
   },
   back() {
     wx.navigateBack({
@@ -45,6 +48,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    getMusicGeci(options.id).then(res => {
+      console.log(res);
+      let str = gecireg(res.data.lrc.lyric)
+      this.setData({
+        geci: str
+      })
+    })
     const app = getApp()
     this.setData({
       titleHeight:app.globalData.statusBarHeight
@@ -53,23 +63,18 @@ Page({
     this.setData({
       swiperHeight: hei
     })
-    getMusicGeci(options.id).then(res => {
-      let str = gecireg(res.data.lrc.lyric)
-      this.setData({
-        geci: str
-      })
-    })
+   
     getMusicInfo(options.id).then(res => {
       this.setData({
         music:res.data.songs[0],
         dt: res.data.songs[0].dt / 1000
       })
     })
+   
     getMusicUrl(options.id).then(res => {
       this.setData({
         music_info:res.data.data[0]
       })
-      musicContent.stop()
       musicContent.src = res.data.data[0].url
     })
     musicContent.onCanplay(()=> {
@@ -87,11 +92,12 @@ Page({
          }
        }
        this.setData({
-        currentgeci: i == 0 ? this.data.geci[0].text:this.data.geci[i-1].text,
+        currentTop: i * 35,
+        currentIndex: i,
+        currentgeci: this.data.geci[i-1].text != undefined ? this.data.geci[i-1].text : '',
         currentTime: time,
         currentslider: current
       })
-
       }
     })
   },
@@ -103,9 +109,9 @@ Page({
     }
   },
   sliderchanger(res) {
+    musicContent.pause()
     const index = res.detail.value
     const num = this.data.dt * index / 100
-    musicContent.pause()
     musicContent.seek(num)
     this.setData({
       isslider:true
@@ -154,13 +160,10 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  },
   musicpause() {
-    musicContent.pause()
+    this.setData({
+      isplay: !this.data.isplay
+    })
+    this.data.isplay ? musicContent.play(): musicContent.pause()
   }
 })

@@ -37,7 +37,7 @@ view {
   justify-content: center;
 }
 .center view {
-  margin: 0 20rpx;
+  padding: 0 30rpx;
   color: rgba(0,0,0, .4);
 }
 .right {
@@ -54,6 +54,7 @@ view {
 }
 .gq_image {
   flex: 4;
+  padding: 40rpx  20rpx 0 20rpx;
   margin: 0 auto;
   width: 100%;
 }
@@ -63,8 +64,11 @@ view {
 .gq_title{
   flex: 1;
 }
+.gq_title view {
+  padding-left: 20rpx;
+}
 .gq_title view:nth-child(1) {
-  font-size: 42rpx;
+  font-size: 36rpx;
 }
 .gq_title view:last-child {
   font-size: 30rpx;
@@ -84,26 +88,26 @@ view {
   flex: 1;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 40rpx;
 }
 .anniu image {
-  width: 80%;
+  width: 10%;
   height: 58rpx;
 }
-.a_left {
-  flex: 1;
-}
-.a_center {
-  text-align: center;
-  flex: 3;
-}
-.a_center image{
-  width: 20%;
-  height: 90rpx;
-}
-.a_right {
-  flex: 1;
-}
+
 .slidertext {
   display: flex;
   justify-content: space-between;
+}
+.scrolly {
+  height: 100%;
+  text-align: center;
+}
+.txt {
+  line-height: 35px;
+}
+.active {
+  color: rgb(209, 73, 175);
+  font-size: 40rpx;
 }
