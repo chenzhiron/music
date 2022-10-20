@@ -19,7 +19,7 @@
 </view>
 
 <header-title title="推荐歌曲"></header-title>
-<view wx:for="{{tuijinaMusic}}" wx:key="this" class="tuijian" bindtap="music_play" data-item="{{item}}">
+<view wx:for="{{tuijinaMusic}}" wx:key="this" class="tuijian" bindtap="music_play" data-item="{{item}}" data-index='{{index}}'>
   <view class="tjleft"><image src="{{item.song.album.blurPicUrl}}" mode="widthFix"></image></view>
   <view class="tjright">
     <view class="tjrtext">{{item.song.name}}</view>

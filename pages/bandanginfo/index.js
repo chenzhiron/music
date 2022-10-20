@@ -16,12 +16,16 @@ Page({
    */
   onLoad(options) {
     getMusicinfo(options.id).then(res => {
+      console.log(res);
       this.setData({
         bandanginfo:res.data.playlist
       })
     })
   },
   musicchange(res){
+    const app = getApp()
+    app.globalData.musicIndex = res.currentTarget.dataset.index
+    app.globalData.musicList = this.data.bandanginfo.tracks
     const id = res.currentTarget.dataset.item.id
     wx.navigateTo({
       url: '/pages/play_music/index?id='+id,

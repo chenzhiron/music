@@ -34,7 +34,9 @@ Page({
     })
   },
   bofangsongs(res) {
-    console.log(res);
+    const app = getApp()
+    app.globalData.musicIndex = res.currentTarget.dataset.index
+    app.globalData.musicList = this.data.info.tracks
     const id = res.currentTarget.dataset.item.id
     wx.navigateTo({
       url: '/pages/play_music/index?id='+id,

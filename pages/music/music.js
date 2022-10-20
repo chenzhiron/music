@@ -82,6 +82,9 @@ Page({
     })
   },
   music_play(item) {
+    const app = getApp()
+    app.globalData.musicIndex = item.currentTarget.dataset.index
+    app.globalData.musicList = this.data.tuijinaMusic
     const id = item.currentTarget.dataset.item.id
     wx.navigateTo({
       url: '/pages/play_music/index?id='+id,

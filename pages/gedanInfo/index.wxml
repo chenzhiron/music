@@ -1,6 +1,6 @@
 <view>
   <header-title title='{{info.name}}'></header-title>
-  <view wx:for="{{info.tracks}}" wx:key="id" class="item" bindtap="musicchange" data-item="{{item}}">
+  <view wx:for="{{info.tracks}}" wx:key="id" class="item" bindtap="musicchange" data-item="{{item}}" data-index='{{index}}'>
     <view class="index">{{index+1}}</view>
     <view class="name">
       <view>{{item.name}}</view>

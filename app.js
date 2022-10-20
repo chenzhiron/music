@@ -14,6 +14,8 @@ App({
     })
   },
   globalData: {
+    musicIndex: 0,
+    musicList: [],
     screenWidth:0,
     screenHeight:0,
     statusBarHeight:0

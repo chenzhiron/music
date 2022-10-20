@@ -10,6 +10,7 @@ Page({
    */
 
   data: {
+    app: {},
     titleHeight:0,
     swiperHeight:0,
     DAOHANGTITLE,
@@ -24,7 +25,11 @@ Page({
     currentgeci:'',
     currentIndex:0,
     currentTop:0,
-    isplay:true
+    isplay:true,
+    mode: ['order','random','repeat'], 
+    modeIndex:0, // 0-顺序，1-随机 2-重复
+    musicIndex:0,
+    musicList:[]
   },
   back() {
     wx.navigateBack({
@@ -48,30 +53,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    getMusicGeci(options.id).then(res => {
-      console.log(res);
-      let str = gecireg(res.data.lrc.lyric)
-      this.setData({
-        geci: str
-      })
-    })
     const app = getApp()
     this.setData({
-      titleHeight:app.globalData.statusBarHeight
+      app: app,
+      titleHeight:app.globalData.statusBarHeight,
+      musicIndex: app.globalData.musicIndex,
+      musicList: app.globalData.musicList
     })
     const hei = app.globalData.screenHeight - this.data.titleHeight - DAOHANGTITLE
     this.setData({
       swiperHeight: hei
     })
+   this.MusicInfo(options.id)
    
-    getMusicInfo(options.id).then(res => {
-      this.setData({
-        music:res.data.songs[0],
-        dt: res.data.songs[0].dt / 1000
-      })
-    })
-   
-    getMusicUrl(options.id).then(res => {
+   this.getMusic(options.id)
+  
+  },
+  getMusic(id) {
+    getMusicUrl(id).then(res => {
       this.setData({
         music_info:res.data.data[0]
       })
@@ -92,13 +91,45 @@ Page({
          }
        }
        this.setData({
-        currentTop: i * 35,
+        currentTop: i * 35 + this.data.titleHeight + DAOHANGTITLE,
         currentIndex: i,
         currentgeci: this.data.geci[i-1].text != undefined ? this.data.geci[i-1].text : '',
         currentTime: time,
         currentslider: current
       })
       }
+    })
+    musicContent.onEnded(() => {
+      if(this.data.modeIndex == 2) {
+        musicContent.seek(0)
+        musicContent.play()
+        setTimeout(() => {
+          console.log(musicContent.paused)
+        }, 10)
+         this.setData({
+          currentTime:0,
+          currentslider:0,
+          currentTop: 0
+         })
+      }else {
+        musicContent.loop = false
+      }
+    })
+  },
+  MusicInfo(id){
+    getMusicInfo(id).then(res => {
+      this.setData({
+        music:res.data.songs[0],
+        dt: res.data.songs[0].dt / 1000
+      })
+    })
+  },
+  geci(id) {
+    getMusicGeci(id).then(res => {
+      let str = gecireg(res.data.lrc.lyric)
+      this.setData({
+        geci: str
+      })
     })
   },
   sliderchangering() {
@@ -117,53 +148,47 @@ Page({
       isslider:true
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  modeChange() {
+    let i = this.data.modeIndex + 1
+    if(i == 3) i = 0
+    this.setData({
+      modeIndex: i
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
   musicpause() {
     this.setData({
       isplay: !this.data.isplay
     })
     this.data.isplay ? musicContent.play(): musicContent.pause()
+  },
+  musicUp() {
+    this.musicChange(false)
+  },
+  musicNext() {
+    this.musicChange() 
+  },
+  musicChange(isNext = true) {
+    let i = this.data.musicIndex
+    switch(this.data.modeIndex) {
+      case 0:
+        i = i + (isNext ? 1: -1)
+        console.log(i);
+        if(i == this.data.musicList.length) i = 0
+        if(i == -1) i = this.data.musicList.length - 1
+        break
+      case 1:
+        i = Math.floor(Math.random() * this.data.musicList.length)
+        break
+      case 2:
+        break
+    }
+    let id = this.data.musicList[i].id
+    this.MusicInfo(id)
+    this.geci(id)
+    this.getMusic(id)
+    this.data.app.globalData.musicIndex = i
+    this.setData({
+      musicIndex: i
+    })
   }
 })
