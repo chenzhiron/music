@@ -15,6 +15,7 @@ Page({
    */
   onLoad(options) {
     searchHots().then(res => {
+     
       this.setData({
         searchHot: res.data.result.hots
       })
@@ -28,6 +29,7 @@ Page({
       return
     }
     searchMusic(res.detail).then(res => {
+      console.log(res);
       this.setData({
         songs:res.data.result.songs
       })
@@ -36,7 +38,7 @@ Page({
   bofangsongs(res) {
     const app = getApp()
     app.globalData.musicIndex = res.currentTarget.dataset.index
-    app.globalData.musicList = this.data.info.tracks
+    app.globalData.musicList = this.data.songs
     const id = res.currentTarget.dataset.item.id
     wx.navigateTo({
       url: '/pages/play_music/index?id='+id,

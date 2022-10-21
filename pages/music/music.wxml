@@ -42,7 +42,7 @@
 </view>
 
 <header-title title='推荐榜单'></header-title>
-<view>
+<view class="a_gedan">
   <scroll-view scroll-x >
   <view class="gedan">
     <view wx:for="{{leixingbang.list}}" wx:key="this" bindtap="bandang" data-item="{{item}}">
@@ -51,4 +51,10 @@
     </view>
   </view>
   </scroll-view>
+</view>
+
+
+<!-- 底部跳转播放页 -->
+<view class="bottomView" wx:if="{{app.globalData.musicList.length > 0}}" bindtap="goMusic">
+
 </view>

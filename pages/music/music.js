@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    app:{},
     banner:[],
     tuijinaMusic:[],
     swiperheight:0,
@@ -33,6 +34,9 @@ Page({
    */
   onLoad(options) {
     const app = getApp()
+    this.setData({
+      app:app
+    })
     wx.getSystemInfo({
       success: (result) => {
        app.globalData.screenWidth = result.screenWidth
@@ -90,11 +94,22 @@ Page({
       url: '/pages/play_music/index?id='+id,
     })
   },
+  goMusic() {
+    wx.navigateTo({
+      url: '/pages/play_music/index?id='+this.data.app.globalData.musicList[this.data.app.globalData.musicIndex].id,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
 
+  },
+  onShow() {
+    const app = getApp()
+    this.setData({
+      app
+    })
   },
   /**
    * 生命周期函数--监听页面卸载

@@ -10,7 +10,7 @@
 
 <view wx:if="{{songs.length > 0}}">
     <header-title title='搜索推荐'></header-title>
-    <view wx:for="{{songs}}" wx:key="id" class="item" bindtap="bofangsongs" data-item="{{item}}">
+    <view wx:for="{{songs}}" wx:key="id" class="item" bindtap="bofangsongs" data-item="{{item}}" data-index="{{index}}">
     <view class="index">{{index+1}}</view>
     <view class="name">
       <view>{{item.name}}</view>

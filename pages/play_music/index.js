@@ -53,21 +53,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    console.log(options);
     const app = getApp()
+    const hei = app.globalData.screenHeight - app.globalData.statusBarHeight - DAOHANGTITLE
     this.setData({
       app: app,
+      swiperHeight: hei,
       titleHeight:app.globalData.statusBarHeight,
       musicIndex: app.globalData.musicIndex,
       musicList: app.globalData.musicList
     })
-    const hei = app.globalData.screenHeight - this.data.titleHeight - DAOHANGTITLE
-    this.setData({
-      swiperHeight: hei
-    })
+   this.geci(options.id)
    this.MusicInfo(options.id)
-   
    this.getMusic(options.id)
-  
+  },
+  geci(id) {
+    getMusicGeci(id).then(res => {
+      let str = gecireg(res.data.lrc.lyric)
+      this.setData({
+        geci: str
+      })
+    })
   },
   getMusic(id) {
     getMusicUrl(id).then(res => {
@@ -93,7 +99,7 @@ Page({
        this.setData({
         currentTop: i * 35 + this.data.titleHeight + DAOHANGTITLE,
         currentIndex: i,
-        currentgeci: this.data.geci[i-1].text != undefined ? this.data.geci[i-1].text : '',
+        currentgeci: this.data.geci[i - 1].text,
         currentTime: time,
         currentslider: current
       })
@@ -102,6 +108,7 @@ Page({
     musicContent.onEnded(() => {
       if(this.data.modeIndex == 2) {
         musicContent.seek(0)
+        musicContent.autoplay = true
         musicContent.play()
         setTimeout(() => {
           console.log(musicContent.paused)
@@ -112,8 +119,9 @@ Page({
           currentTop: 0
          })
       }else {
-        musicContent.loop = false
+        this.musicChange()
       }
+
     })
   },
   MusicInfo(id){
@@ -124,14 +132,7 @@ Page({
       })
     })
   },
-  geci(id) {
-    getMusicGeci(id).then(res => {
-      let str = gecireg(res.data.lrc.lyric)
-      this.setData({
-        geci: str
-      })
-    })
-  },
+ 
   sliderchangering() {
     if(this.data.isslider) {
       this.setData({
@@ -172,7 +173,6 @@ Page({
     switch(this.data.modeIndex) {
       case 0:
         i = i + (isNext ? 1: -1)
-        console.log(i);
         if(i == this.data.musicList.length) i = 0
         if(i == -1) i = this.data.musicList.length - 1
         break
@@ -183,8 +183,8 @@ Page({
         break
     }
     let id = this.data.musicList[i].id
-    this.MusicInfo(id)
     this.geci(id)
+    this.MusicInfo(id)
     this.getMusic(id)
     this.data.app.globalData.musicIndex = i
     this.setData({
